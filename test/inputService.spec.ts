@@ -2,128 +2,242 @@ import { EDirection, EOrientation, ICoordinates } from '../src/types'
 import { isValidInput, _private as inputServicePrivate, getCoordinates } from '../src/services/inputService'
 
 describe('isValidInput', () => {
-  it('Should be an invalid robot input', () => {
+  it('should be an invalid robot input', () => {
     const robotInput = 'LMMMRMMMSLRRMM'
-    expect(isValidInput(robotInput)).toEqual(false)
+
+    const result = isValidInput(robotInput)
+    const expectedResult = false
+
+    expect(result).toEqual(expectedResult)
   })
-  it('Should be a valid robot input', () => {
+
+  it('should be a valid robot input', () => {
     const robotInput = 'LMMMRMMMLRRMM'
-    expect(isValidInput(robotInput)).toEqual(true)
+
+    const result = isValidInput(robotInput)
+    const expectedResult = true
+
+    expect(result).toEqual(expectedResult)
   })
 })
 
 describe('changeDirection', () => {
-  it('Should be facing north', () => {
+  it('should be facing north', () => {
     const command = EDirection.Left
     const currentOrientation = EOrientation.East
-    expect(inputServicePrivate.changeDirection(command, currentOrientation)).toBe(EOrientation.North)
+
+    const result = inputServicePrivate.changeDirection(command, currentOrientation)
+    const expectedResult = EOrientation.North
+
+    expect(result).toBe(expectedResult)
   })
-  it('Should be facing north', () => {
+
+  it('should be facing north', () => {
     const command = 'L' as EDirection
     const currentOrientation = EOrientation.East
-    expect(inputServicePrivate.changeDirection(command, currentOrientation)).toBe(EOrientation.North)
+
+    const result = inputServicePrivate.changeDirection(command, currentOrientation)
+    const expectedResult = EOrientation.North
+
+    expect(result).toBe(expectedResult)
   })
-  it('Should be facing east', () => {
+
+  it('should be facing east', () => {
     const command = EDirection.Left
     const currentOrientation = EOrientation.South
-    expect(inputServicePrivate.changeDirection(command, currentOrientation)).toBe(EOrientation.East)
+
+    const result = inputServicePrivate.changeDirection(command, currentOrientation)
+    const expectedResult = EOrientation.East
+
+    expect(result).toBe(expectedResult)
   })
-  it('Should be facing south', () => {
+
+  it('should be facing south', () => {
     const command = EDirection.Right
     const currentOrientation = EOrientation.East
-    expect(inputServicePrivate.changeDirection(command, currentOrientation)).toBe(EOrientation.South)
+
+    const result = inputServicePrivate.changeDirection(command, currentOrientation)
+    const expectedResult = EOrientation.South
+
+    expect(result).toBe(expectedResult)
   })
-  it('Should be facing west', () => {
+
+  it('should be facing west', () => {
     const command = EDirection.Left
     const currentOrientation = EOrientation.North
-    expect(inputServicePrivate.changeDirection(command, currentOrientation)).toBe(EOrientation.West)
+
+    const result = inputServicePrivate.changeDirection(command, currentOrientation)
+    const expectedResult = EOrientation.West
+
+    expect(result).toBe(expectedResult)
   })
 })
 
 describe('moveRobot', () => {
-  it('Should be at coordinates X:0, Y:1', () => {
+  it('should be at coordinates X:0, Y:1', () => {
     const initialCoordinates: ICoordinates = { x: 0, y: 0 }
     const currentOrientation: EOrientation = EOrientation.North
-    expect(inputServicePrivate.moveRobot(initialCoordinates, currentOrientation)).toEqual({ x: 0, y: 1 })
+
+    const result = inputServicePrivate.moveRobot(initialCoordinates, currentOrientation)
+    const expectedResult = { x: 0, y: 1 }
+
+    expect(result).toEqual(expectedResult)
   })
-  it('Should be at coordinates X:0, Y:9', () => {
+
+  it('should be at coordinates X:0, Y:9', () => {
     const initialCoordinates: ICoordinates = { x: 0, y: 0 }
     const currentOrientation: EOrientation = EOrientation.South
-    expect(inputServicePrivate.moveRobot(initialCoordinates, currentOrientation)).toEqual({ x: 0, y: 9 })
+
+    const result = inputServicePrivate.moveRobot(initialCoordinates, currentOrientation)
+    const expectedResult = { x: 0, y: 9 }
+
+    expect(result).toEqual(expectedResult)
   })
-  it('Should be at coordinates X:1, Y:0', () => {
+
+  it('should be at coordinates X:1, Y:0', () => {
     const initialCoordinates: ICoordinates = { x: 0, y: 0 }
     const currentOrientation: EOrientation = EOrientation.East
-    expect(inputServicePrivate.moveRobot(initialCoordinates, currentOrientation)).toEqual({ x: 1, y: 0 })
+
+    const result = inputServicePrivate.moveRobot(initialCoordinates, currentOrientation)
+    const expectedResult = { x: 1, y: 0 }
+
+    expect(result).toEqual(expectedResult)
   })
-  it('Should be at coordinates X:9, Y:0', () => {
+
+  it('should be at coordinates X:9, Y:0', () => {
     const initialCoordinates: ICoordinates = { x: 0, y: 0 }
     const currentOrientation: EOrientation = EOrientation.West
-    expect(inputServicePrivate.moveRobot(initialCoordinates, currentOrientation)).toEqual({ x: 9, y: 0 })
+
+    const result = inputServicePrivate.moveRobot(initialCoordinates, currentOrientation)
+    const expectedResult = { x: 9, y: 0 }
+
+    expect(result).toEqual(expectedResult)
   })
 })
 
 describe('parseCoordinates', () => {
-  it('Coordinates should be 2:3:N', () => {
+  it('should be 2:3:N', () => {
     const coordinates: ICoordinates = { x: 2, y: 3 }
     const orientation: EOrientation = EOrientation.North
-    expect(inputServicePrivate.parseCoordinates(coordinates, orientation)).toEqual('2:3:N')
+
+    const result = inputServicePrivate.parseCoordinates(coordinates, orientation)
+    const expectedResult = '2:3:N'
+
+    expect(result).toEqual(expectedResult)
   })
-  it('Coordinates should be 1:4:E', () => {
+
+  it('should be 1:4:E', () => {
     const coordinates: ICoordinates = { x: 1, y: 4 }
     const orientation: EOrientation = EOrientation.East
-    expect(inputServicePrivate.parseCoordinates(coordinates, orientation)).toEqual('1:4:E')
+
+    const result = inputServicePrivate.parseCoordinates(coordinates, orientation)
+    const expectedResult = '1:4:E'
+
+    expect(result).toEqual(expectedResult)
   })
-  it('Coordinates should be 7:0:S', () => {
+
+  it('should be 7:0:S', () => {
     const coordinates: ICoordinates = { x: 7, y: 0 }
     const orientation: EOrientation = EOrientation.South
-    expect(inputServicePrivate.parseCoordinates(coordinates, orientation)).toEqual('7:0:S')
+
+    const result = inputServicePrivate.parseCoordinates(coordinates, orientation)
+    const expectedResult = '7:0:S'
+
+    expect(result).toEqual(expectedResult)
   })
-  it('Coordinates should be 1:2:W', () => {
+
+  it('should be 1:2:W', () => {
     const coordinates: ICoordinates = { x: 1, y: 2 }
     const orientation: EOrientation = EOrientation.West
-    expect(inputServicePrivate.parseCoordinates(coordinates, orientation)).toEqual('1:2:W')
-  })
-})
 
-describe('calculateRobotMovement', () => {
-  it('Coordinates should be {x: 0, y: 2} and orientation North', () => {
-    const commands = ['m', 'm']
-    expect(inputServicePrivate.calculateRobotMovement(commands)).toEqual([{ x: 0, y: 2 }, 0])
-  })
-  it('Coordinates should be {x: 0, y: 0} and orientation West', () => {
-    const commands = ['r', 'r', 'r']
-    expect(inputServicePrivate.calculateRobotMovement(commands)).toEqual([{ x: 0, y: 0 }, 3])
-  })
-  it('Coordinates should be {x: 9, y: 2} and orientation East', () => {
-    const commands = ['l', 'm', 'R', 'm', 'M', 'r']
-    expect(inputServicePrivate.calculateRobotMovement(commands)).toEqual([{ x: 9, y: 2 }, 1])
-  })
-  it('Coordinates should be {x: 5, y: 3} and orientation North', () => {
-    const commands = ['R', 'R', 'R', 'R', 'M', 'M', 'M', 'R', 'M', 'M', 'M', 'L', 'L', 'L', 'L', 'M', 'M', 'L']
-    expect(inputServicePrivate.calculateRobotMovement(commands)).toEqual([{ x: 5, y: 3 }, 0])
-  })
-})
+    const result = inputServicePrivate.parseCoordinates(coordinates, orientation)
+    const expectedResult = '1:2:W'
 
-describe('getCoordinates', () => {
-  it('Should return coordinates and orientation 2:3:N', () => {
-    const robotInput = 'MMRMMLM'
-    expect(getCoordinates(robotInput)).toEqual('2:3:N')
+    expect(result).toEqual(expectedResult)
   })
-  it('Should return coordinates and orientation 0:0:E', () => {
-    const robotInput = 'RRl'
-    expect(getCoordinates(robotInput)).toEqual('0:0:E')
+
+  describe('calculateRobotMovement', () => {
+    it('should be {x: 0, y: 2} and orientation North', () => {
+      const commands = ['m', 'm']
+
+      const result = inputServicePrivate.calculateRobotMovement(commands)
+      const expectedResult = [{ x: 0, y: 2 }, 0]
+
+      expect(result).toEqual(expectedResult)
+    })
+
+    it('should be {x: 0, y: 0} and orientation West', () => {
+      const commands = ['r', 'r', 'r']
+
+      const result = inputServicePrivate.calculateRobotMovement(commands)
+      const expectedResult = [{ x: 0, y: 0 }, 3]
+
+      expect(result).toEqual(expectedResult)
+    })
+
+    it('should be {x: 9, y: 2} and orientation East', () => {
+      const commands = ['l', 'm', 'R', 'm', 'M', 'r']
+
+      const result = inputServicePrivate.calculateRobotMovement(commands)
+      const expectedResult = [{ x: 9, y: 2 }, 1]
+
+      expect(result).toEqual(expectedResult)
+    })
+
+    it('should be {x: 5, y: 3} and orientation North', () => {
+      const commands = ['R', 'R', 'R', 'R', 'M', 'M', 'M', 'R', 'M', 'M', 'M', 'L', 'L', 'L', 'L', 'M', 'M', 'L']
+
+      const result = inputServicePrivate.calculateRobotMovement(commands)
+      const expectedResult = [{ x: 5, y: 3 }, 0]
+
+      expect(result).toEqual(expectedResult)
+    })
   })
-  it('Should return coordinates and orientation 0:0:W', () => {
-    const robotInput = 'rrr'
-    expect(getCoordinates(robotInput)).toEqual('0:0:W')
-  })
-  it('Should return coordinates and orientation 9:3:E', () => {
-    const robotInput = 'lMmMRmMMlrRMM'
-    expect(getCoordinates(robotInput)).toEqual('9:3:E')
-  })
-  it('Should return coordinates and orientation 4:4:W', () => {
-    const robotInput = 'mmRmMlmMrmmRR'
-    expect(getCoordinates(robotInput)).toEqual('4:4:W')
+
+  describe('getCoordinates', () => {
+    it('should return coordinates and orientation 2:3:N', () => {
+      const robotInput = 'MMRMMLM'
+
+      const result = getCoordinates(robotInput)
+      const expectedResult = '2:3:N'
+
+      expect(result).toEqual(expectedResult)
+    })
+
+    it('should return coordinates and orientation 0:0:E', () => {
+      const robotInput = 'RRl'
+
+      const result = getCoordinates(robotInput)
+      const expectedResult = '0:0:E'
+
+      expect(result).toEqual(expectedResult)
+    })
+
+    it('should return coordinates and orientation 0:0:W', () => {
+      const robotInput = 'rrr'
+
+      const result = getCoordinates(robotInput)
+      const expectedResult = '0:0:W'
+
+      expect(result).toEqual(expectedResult)
+    })
+
+    it('should return coordinates and orientation 9:3:E', () => {
+      const robotInput = 'lMmMRmMMlrRMM'
+
+      const result = getCoordinates(robotInput)
+      const expectedResult = '9:3:E'
+
+      expect(result).toEqual(expectedResult)
+    })
+
+    it('should return coordinates and orientation 4:4:W', () => {
+      const robotInput = 'mmRmMlmMrmmRR'
+
+      const result = getCoordinates(robotInput)
+      const expectedResult = '4:4:W'
+
+      expect(result).toEqual(expectedResult)
+    })
   })
 })

@@ -4,6 +4,7 @@ export const getCoordinates = (robotInput: string): string => {
   const commands = robotInput.split('')
   const [coordinates, orientation] = calculateRobotMovement(commands)
   const finalCoordinates = parseCoordinates(coordinates, orientation)
+
   return finalCoordinates
 }
 
@@ -16,7 +17,8 @@ const calculateRobotMovement = (commands: string[]): [ICoordinates, EOrientation
   let orientation: EOrientation = EOrientation.North
 
   commands.forEach((command) => {
-    if (Object.values(EDirection).includes(command.toLocaleUpperCase() as EDirection)) {
+    const commandIsADirection = Object.values(EDirection).includes(command.toLocaleUpperCase() as EDirection)
+    if (commandIsADirection) {
       orientation = changeDirection(command.toLocaleUpperCase() as EDirection, orientation)
     } else {
       coordinates = moveRobot(coordinates, orientation)
@@ -32,6 +34,7 @@ const changeDirection = (command: EDirection, orientation: EOrientation): EOrien
   } else {
     orientation = (orientation - 1 + 4) % 4
   }
+
   return orientation
 }
 
@@ -39,11 +42,14 @@ const moveRobot = (coordinates: ICoordinates, orientation: EOrientation): ICoord
   if (orientation === EOrientation.North) return { ...coordinates, y: (coordinates.y + 1) % 10 }
   if (orientation === EOrientation.South) return { ...coordinates, y: (coordinates.y - 1 + 10) % 10 }
   if (orientation === EOrientation.East) return { ...coordinates, x: (coordinates.x + 1) % 10 }
+
   return { ...coordinates, x: (coordinates.x - 1 + 10) % 10 }
 }
 
 const parseCoordinates = (coordinates: ICoordinates, orientation: EOrientation): string => {
-  return `${coordinates.x}:${coordinates.y}:${EOrientation[orientation][0]}`
+  const orientationFirstCharacter = EOrientation[orientation][0]
+
+  return `${coordinates.x}:${coordinates.y}:${orientationFirstCharacter}`
 }
 
 export const _private = {
