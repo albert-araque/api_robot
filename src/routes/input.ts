@@ -1,5 +1,5 @@
 import express from 'express'
-import { getCoordinates, isValidInput } from './src/services/inputService'
+import { getCoordinates, isValidInput } from '../services/inputService'
 
 const router = express.Router()
 

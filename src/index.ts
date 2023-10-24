@@ -1,5 +1,5 @@
 import express from 'express'
-import inputRoutes from '../input'
+import inputRoutes from './routes/input'
 import morgan from 'morgan'
 
 const PORT = 3000
