@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "tsc": "tsc",
-    "test": "jest --verbose",
-    "coverage": "jest --verbose --coverage",
+    "test": "jest",
     "lint": "ts-standard",
     "start": "node build/index.js",
     "dev": "ts-node-dev src/index.ts"
