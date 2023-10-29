@@ -7,10 +7,10 @@ export enum EOrientation {
 
 export enum EDirection {
   Left = 'L',
-  Right = 'R'
+  Right = 'R',
 }
 
 export interface ICoordinates {
-  x: number
-  y: number
+  x: number;
+  y: number;
 }

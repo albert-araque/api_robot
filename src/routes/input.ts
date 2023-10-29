@@ -1,22 +1,22 @@
-import express from 'express'
-import { getCoordinates, isValidInput } from '../services/inputService'
+import express from 'express';
+import { getCoordinates, isValidInput } from '../services/inputService';
 
-const router = express.Router()
+const router = express.Router();
 
 router.get('/:input', (req, res) => {
-  const robotInput = req.params.input
+  const robotInput = req.params.input;
   if (robotInput.length === 0) {
-    res.status(400)
-    res.json({ error: 'The input must be at least 1 character long' })
-    return
+    res.status(400);
+    res.json({ error: 'The input must be at least 1 character long' });
+    return;
   }
   if (!isValidInput(robotInput)) {
-    res.status(400)
-    res.json({ error: 'The input must only contain "L/l", "R/r" and "M/m" characters' })
-    return
+    res.status(400);
+    res.json({ error: 'The input must only contain "L/l", "R/r" and "M/m" characters' });
+    return;
   }
-  const coordinates = getCoordinates(robotInput)
-  res.send(`Robot's final coordinates: ${coordinates}`)
-})
+  const coordinates = getCoordinates(robotInput);
+  res.send(`Robot's final coordinates: ${coordinates}`);
+});
 
-export default router
+export default router;
